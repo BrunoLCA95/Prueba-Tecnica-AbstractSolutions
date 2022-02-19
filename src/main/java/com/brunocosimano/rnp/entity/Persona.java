@@ -3,6 +3,7 @@ package com.brunocosimano.rnp.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,9 @@ public class Persona {
     private Date fNacimiento;
     
     private EnumGenero sexo;
-    private Integer DNI;
+
+    @Column(unique = true)
+    private Integer dni;
 
     public Integer getId() {
         return id;
@@ -62,11 +65,11 @@ public class Persona {
     public void setSexo(EnumGenero sexo) {
         this.sexo = sexo;
     }
-    public Integer getDNI() {
-        return DNI;
+    public Integer getDni() {
+        return dni;
     }
     public void setDNI(Integer dNI) {
-        DNI = dNI;
+        dni = dNI;
     }
 
 }

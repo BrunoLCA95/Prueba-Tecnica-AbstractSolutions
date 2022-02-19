@@ -2,11 +2,12 @@ package com.brunocosimano.rnp.controller;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 import com.brunocosimano.rnp.entity.Persona;
 import com.brunocosimano.rnp.service.PersonaService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,15 +34,24 @@ public class PersonaController {
     }
 
     @PostMapping
-    public Persona savePersona(@RequestBody Persona persona){
-        personaService.savePersona(persona);
+    public ResponseEntity<?> savePersona(@RequestBody Persona persona){
+        try {
+            personaService.savePersona(persona);
+            return new ResponseEntity<Persona>(persona, HttpStatus.CREATED);
+        } catch (DataAccessException e) {
+            return new ResponseEntity<Persona>(persona, HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @PatchMapping(path = "genero/")
-    public Persona modifyPersona(@RequestBody Persona persona){
-        Persona persona1 = personaService.findById(persona.getId()).get();
-        persona1.setSexo(persona.getSexo());
-        return personaService.modifyPersona(persona1);
-
+    @PatchMapping("{id}")
+    public ResponseEntity<?> modifyPersona(@RequestBody Persona persona, @PathVariable("id") Integer id){
+        Persona personaM = personaService.findById(id).get();
+        try {
+            personaM.setSexo(persona.getSexo());
+            personaService.modifyPersona(personaM);  
+            return new ResponseEntity<Persona>(personaM, HttpStatus.CREATED);
+        } catch (DataAccessException e) {
+            return new ResponseEntity<Persona>(personaM, HttpStatus.BAD_REQUEST);
+        }
     }
 }

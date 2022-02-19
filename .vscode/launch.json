@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RnpApplication<rnp>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.brunocosimano.rnp.RnpApplication",
+            "projectName": "rnp",
+            "args": ""
+        }
+    ]
+}
