@@ -43,7 +43,7 @@ public class PersonaController {
         }
     }
 
-    @PatchMapping("{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<?> modifyPersona(@RequestBody Persona persona, @PathVariable("id") Integer id){
         Persona personaM = personaService.findById(id).get();
         try {

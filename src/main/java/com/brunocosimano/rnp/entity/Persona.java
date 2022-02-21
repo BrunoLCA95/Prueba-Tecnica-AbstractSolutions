@@ -32,7 +32,6 @@ public class Persona {
     
     private EnumGenero sexo;
 
-    @Column(unique = true)
     private Integer dni;
 
     public Integer getId() {
