@@ -1,4 +1,4 @@
-# Pueba-Tecnica-AbstractSolutions
+# Pueba Tecnica AbstractSolutions
 
 ## Documentacion
 
