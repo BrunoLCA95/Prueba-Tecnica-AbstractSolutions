@@ -1,4 +1,4 @@
-# Pueba Tecnica AbstractSolutions
+# Prueba Tecnica AbstractSolutions
 
 # Consigna 
 
